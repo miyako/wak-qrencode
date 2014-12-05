@@ -1,0 +1,19 @@
+﻿.qrcode-form {
+	max-width: 530px;
+	padding: 20px 15px;
+	/* centering */
+	margin: 0 auto;
+}
+
+.qrcode-form input {
+	margin-bottom: 10px;
+}
+
+.qrcode-image {
+	text-align:center;
+}
+
+.qrcode-image img {
+	display:inline-block;
+	margin:0 5px
+}
