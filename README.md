@@ -48,3 +48,8 @@ bs = BinaryStream(desktopPath + 'test-micro.svg', 'write');
 bs.putBlob(qr);
 bs.close();
 ```
+Demo
+---
+Open index.html in your browser.
+
+![]()
