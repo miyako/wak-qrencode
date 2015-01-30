@@ -52,4 +52,4 @@ Demo
 ---
 Open index.html in your browser.
 
-![]()
+![](https://github.com/miyako/wak-qrencode/blob/master/images/1.png)
