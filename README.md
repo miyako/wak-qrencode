@@ -1,9 +1,11 @@
 wak-qrencode
 ============
 
-The module includes [qrencode 3.4.4](http://fukuchi.org/works/qrencode/) executable for Mac, Windows x64 and Linux x64.
+Important Motice
+---
+The original version is now in branch "standard-qrencode".
 
-The executables for Mac are built with @loader_path and for Linux with $ORIGIN, so no need to install qrencode, zlib, or libpng.
+The main branch uses a special [waqrencode](https://github.com/miyako/console-qrencode) program.
 
 Install
 -------
@@ -14,20 +16,35 @@ Example
 ```
 var modulesFolder = FileSystemSync('Modules');
 var qrencode = require(modulesFolder.path + 'qrencode');
-
 var desktopPath = FileSystemSync('Desktop').path;
 
+var qr, bs;
+
 var url = 'http://www.wakanda.org/';
+var type = 'png';//or 'svg'
+var dpi = 96;//default = 72
+var margin = 0;
+var size = 5;//of rects
+var version = 1;//1->40 for qr, 1->4 for micro qr
 
-//to create a file on disk
-qrencode.qrencode('-o ' + desktopPath + 'test.png' + ' ' + url);
+qr = qrencode.qrencode(url, type, dpi, margin, size, version).console.stdOut.toBlob('image/png');
+bs = BinaryStream(desktopPath + 'test.png', 'write');
+bs.putBlob(qr);
+bs.close();
 
-//to create a Buffer/Blob 
-qrencode.qrencode('-t PNG -o - ' + ' ' + url).console.stdOut.toBlob('image/png');
+qr = qrencode.qrencode(url, 'svg', dpi, margin, size, version).console.stdOut.toBlob('image/svg+xml');
+bs = BinaryStream(desktopPath + 'test.svg', 'write');
+bs.putBlob(qr);
+bs.close();
 
-//project module (for RPC)
-var qr = require('qr');
+//Micro QR
+qr = qrencode.mqrencode('12345', type, dpi, margin, size, 4).console.stdOut.toBlob('image/png');
+bs = BinaryStream(desktopPath + 'test-micro.png', 'write');
+bs.putBlob(qr);
+bs.close();
 
-//returns a data url (see index.html)
-qr.encode(url);
+qr = qrencode.mqrencode('12345', 'svg', dpi, margin, size, 4).console.stdOut.toBlob('image/svg+xml');
+bs = BinaryStream(desktopPath + 'test-micro.svg', 'write');
+bs.putBlob(qr);
+bs.close();
 ```
