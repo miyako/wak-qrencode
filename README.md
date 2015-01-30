@@ -5,7 +5,7 @@ Important Notice
 ---
 The original version is now in branch "standard-qrencode".
 
-The main branch uses a special [waqrencode](https://github.com/miyako/console-qrencode) program.
+This main branch uses a special [waqrencode](https://github.com/miyako/console-qrencode) program.
 
 Install
 -------
