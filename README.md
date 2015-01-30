@@ -1,7 +1,7 @@
 wak-qrencode
 ============
 
-Important Motice
+Important Notice
 ---
 The original version is now in branch "standard-qrencode".
 
